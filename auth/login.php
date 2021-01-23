@@ -18,7 +18,7 @@
    * * Получаем данные
    */
   $data = json_decode(file_get_contents("php://input"));
-  $db_users->name = $data->name;
+  $db_users->login = $data->login;
   $db_users->password = $data->password;
 
   $user_exists = $db_users->userExists();
@@ -45,7 +45,7 @@
       "iat" => $iat,
       "nbf" => $nbf,
       "data" => array(
-          "name" => $db_users->name,
+          "login" => $db_users->login,
           "password" => $db_users->password
       )
     );

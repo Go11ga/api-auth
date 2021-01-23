@@ -4,7 +4,7 @@
      * * Свойства объекта
      */
     public $id;
-    public $name;
+    public $login;
     public $password;
 
     /**
@@ -52,7 +52,7 @@
       $arr = $this->getAll();
 
       foreach($arr as $el) {
-        if ($el['name'] === $this->name) {
+        if ($el['login'] === $this->login) {
           $flag  = false;
           break;
         }
@@ -64,7 +64,7 @@
         $newEl = 
           [
             'id' => $this->id, 
-            'name' => $this->name, 
+            'login' => $this->login, 
             'password' => $this->password
           ];
         
@@ -92,7 +92,7 @@
       $arr = $this->getAll();
 
       foreach($arr as $el) {
-        if ($el['name'] === $this->name) {
+        if ($el['login'] === $this->login) {
           $flag  = true;
           break;
         }
@@ -132,20 +132,20 @@
     /**
      * * Обновление пользователя
      */
-    public function update ($name, $password) {
+    public function update ($login, $password) {
       $arr = $this->getAll();
 
       $ind;
 
       foreach($arr as $key => $el) {
         $array = (array) $el;
-        if($array['name'] == $this->name) {
+        if($array['login'] == $this->login) {
           $ind = $key;
         }
       }
 
       $arr2 = (array) $arr[$ind];
-      $arr2['name'] = $name;
+      $arr2['login'] = $login;
       $arr2['password'] = $password;
 
       $object = (object) $arr2;

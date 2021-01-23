@@ -19,14 +19,14 @@
      * * Получаем данные
      */
     $data = json_decode(file_get_contents("php://input"));
-    $db_users->name = $data->name;
+    $db_users->login = $data->login;
     $db_users->password = $data->password;
 
     /**
      * * Создание пользователя
      */
     if (
-      !empty($db_users->name) &&
+      !empty($db_users->login) &&
       !empty($db_users->password) &&
       $db_users->create()
     ) {

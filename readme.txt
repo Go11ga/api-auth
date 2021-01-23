@@ -6,7 +6,7 @@ Body -> raw
 
 Тест для 200:
 {
-  "name" : "Ivan",
+  "login" : "Ivan",
   "password" : "999"
 }
 
@@ -21,14 +21,14 @@ Body -> raw
 
 Тест для 200:
 {
-  "name" : "admin",
+  "login" : "admin",
   "password" : "admin"
 }
 Response: "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hbnktc2l0ZS5vcmciLCJhdWQiOiJodHRwOlwvXC9hbnktc2l0ZS5jb20iLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIn19.noSABdIl-2YGDj-EkSucXT9ppOy3wbgMrDdBmeMmPlk"
 
 Тест для 401 (Unauthorized):
 {
-  "name" : "admin",
+  "login" : "admin",
   "password" : "admin2"
 }
 
@@ -46,7 +46,7 @@ Response:
 {
   "message": "Доступ разрешен.",
   "data": {
-    "name": "admin",
+    "login": "admin",
     "password": "admin"
   }
 }
@@ -68,7 +68,7 @@ Body -> raw
 
 Тест для 200 (Token admin):
 {
-  "name" : "admin2",
+  "login" : "admin2",
   "password" : "admin2",
   "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hbnktc2l0ZS5vcmciLCJhdWQiOiJodHRwOlwvXC9hbnktc2l0ZS5jb20iLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIn19.noSABdIl-2YGDj-EkSucXT9ppOy3wbgMrDdBmeMmPlk"
 }
@@ -83,7 +83,7 @@ Response:
 
 Тест для 401 (Unauthorized):
 {
-  "name" : "admin2",
+  "login" : "admin2",
   "password" : "admin2",
   "jwt": "EDITEDAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hbnktc2l0ZS5vcmciLCJhdWQiOiJodHRwOlwvXC9hbnktc2l0ZS5jb20iLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIn19.noSABdIl-2YGDj-EkSucXT9ppOy3wbgMrDdBmeMmPlk"
 }

@@ -44,24 +44,24 @@
        */
       $decoded = JWT::decode($jwt, $key, array('HS256'));
 
-      $db_users->name = $decoded->data->name;
+      $db_users->login = $decoded->data->login;
       $db_users->password = $decoded->data->password;
 
       if ($db_users->userExists() && $db_users->password_verify ()) {
-        $upd_name = $data->name;
+        $upd_login = $data->login;
         $upd_password = $data->password;
 
         /**
          * * Если обновление прошло успешно, генерируем новый токен
          */
-        if($db_users->update($upd_name, $upd_password)) {
+        if($db_users->update($upd_login, $upd_password)) {
           $token = array(
             "iss" => $iss,
             "aud" => $aud,
             "iat" => $iat,
             "nbf" => $nbf,
             "data" => array(
-              "name" => $upd_name,
+              "login" => $upd_login,
               "password" => $upd_password
             )
           );
