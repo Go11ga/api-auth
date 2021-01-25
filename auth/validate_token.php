@@ -26,7 +26,7 @@
   /**
    * * Получаем JWT 
    */
-  $jwt=isset($data->jwt) ? $data->jwt : "";
+  $jwt=isset($data) ? $data : "";
 
   /**
    * * Если JWT не пуст 

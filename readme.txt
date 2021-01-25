@@ -1,6 +1,6 @@
 1. Создание пользователя
 
-http://api-auth/api/create
+http://api-auth/api/auth/create
 метод POST
 Body -> raw 
 
@@ -15,7 +15,7 @@ Body -> raw
 
 2. Вход пользователя
 
-http://api-auth/api/auth
+http://api-auth/api/auth/auth
 метод POST
 Body -> raw
 
@@ -34,7 +34,7 @@ Response: "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hb
 
 3. Валидация токена
 
-http://api-auth/api/validate
+http://api-auth/api/auth/validate
 метод POST
 Body -> raw
 
@@ -62,7 +62,7 @@ Response:
 }
 
 4. Обновление пользователя
-http://api-auth/api/update
+http://api-auth/api/auth/update
 метод POST
 Body -> raw
 
@@ -87,3 +87,35 @@ Response:
   "password" : "admin2",
   "jwt": "EDITEDAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hbnktc2l0ZS5vcmciLCJhdWQiOiJodHRwOlwvXC9hbnktc2l0ZS5jb20iLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIn19.noSABdIl-2YGDj-EkSucXT9ppOy3wbgMrDdBmeMmPlk"
 }
+
+5. Получить все посты
+http://api-auth/api/posts
+метод GET
+
+6. Получить один пост
+http://api-auth/api/posts/1
+метод GET
+
+7. Добавить один пост
+http://api-auth/api/posts/add
+метод POST
+
+Тест для 200:
+{
+  "title" : "New title",
+  "text" : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut dolores blanditiis quaerat tempore eos voluptatum quod ratione, illum quia ab natus commodi dolor maxime iure dignissimos dolorum nostrum numquam dicta?"
+}
+
+8. Редактирование поста по id
+http://api-auth/api/posts/update/1
+метод POST
+
+Тест для 200:
+{
+  "title" : "test",
+  "text" : "test"
+}
+
+9. Удаление поста по id
+http://api-auth/api/posts/delete/1
+метод POST
