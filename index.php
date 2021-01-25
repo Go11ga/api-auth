@@ -1,5 +1,6 @@
 <?php
   $requestUri = explode('/', trim($_SERVER['REQUEST_URI'],'/'));
+  require_once 'posts/posts_api.php';
 
   try {
     /**
@@ -33,8 +34,6 @@
     if ($_SERVER['REQUEST_METHOD'] ==='POST' && $requestUri[1] === 'auth' && $requestUri[2] === 'update') {
       require_once 'auth/update_user.php';
     }
-
-    require_once 'posts/posts_api.php';
 
     /**
      * * Получить все посты
