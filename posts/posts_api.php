@@ -128,4 +128,31 @@
       echo json_encode(array("message" => "Невозможно удалить пост"));
     }
   }
+
+  /**
+   * Добавить комментарий
+   */
+  function addComment ($id) {
+    $db_posts = new Posts();
+
+    $data = json_decode(file_get_contents("php://input"));
+
+    $title = $data->title;
+    $text = $data->text;
+
+    $post = $db_posts->getById($id);
+
+    if ($post) {
+      if($db_posts->addComment($id, $title, $text)) {
+        http_response_code(200);
+        echo json_encode(array("message" => "Комментарий добавлен"));
+      } else {
+        http_response_code(400);
+        echo json_encode(array("message" => "Невозможно добавить комментарий"));
+      } 
+    } else {
+      http_response_code(400);
+      echo json_encode(array("message" => "Невозможно добавить комментарий"));
+    }
+  }
 ?>

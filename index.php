@@ -77,6 +77,15 @@
       $id = $requestUri[3];
       removeOne($id);
     }
+
+    /**
+     * * Добавить один комментарий
+     * * http://api-auth/api/comment/add/1
+     */
+    if ($_SERVER['REQUEST_METHOD'] ==='POST' && $requestUri[1] === 'comment' && $requestUri[2] === 'add' && isset($requestUri[3])) {
+      $id = $requestUri[3];
+      addComment($id);
+    }
   
   } catch (Exception $e) {
     echo json_encode(Array('error' => $e->getMessage()));

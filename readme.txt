@@ -119,3 +119,13 @@ http://api-auth/api/posts/update/1
 9. Удаление поста по id
 http://api-auth/api/posts/delete/1
 метод POST
+
+10. Добавление комментария
+http://api-auth/api/comment/add/1
+метод POST
+
+Тест для 200:
+{
+  "title" : "test",
+  "text" : "test"
+}

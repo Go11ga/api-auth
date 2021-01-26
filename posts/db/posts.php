@@ -45,7 +45,7 @@
 
       $currentId++;
 
-      $date = date('Y-m-d"T"H:i:s',time());
+      $date = date('Y-m-d H:i:s',time());
 
       $newEl = 
         [
@@ -119,6 +119,62 @@
       $arr2 = array_values($arr);
       $result = json_encode($arr2);
 
+      file_put_contents('posts/db/posts.txt', $result);
+
+      return true;
+    }
+
+    /**
+     * * Добавление комментария
+     */
+    public function addComment ($id, $title, $textInc) {
+      $text = file_get_contents('posts/db/posts.txt');
+      $arr = json_decode($text);
+
+      $ind;
+      foreach($arr as $key => $el) {
+        $array = (array) $el;
+        if($array['id'] == $id) {
+          $ind = $key;
+        }
+      }
+
+      // искомый общий массив
+      $arr2 = (array) $arr[$ind];
+
+      // массив комментариев
+      $comments = $arr2['comments'];
+
+
+      $currentId = 0;
+      foreach($comments as $el){
+        $array = (array) $el;
+        if($array['id'] > $currentId){
+          $currentId = $array['id'];
+        }
+      }
+
+      $currentId++;
+
+      $date = date('Y-m-d H:i:s',time());
+
+      $newEl = 
+        [
+          'id' => $currentId, 
+          'name' => $title,
+          "registered" => $date, 
+          'text' => $textInc
+        ];
+
+      $object = (object) $newEl;
+
+      array_push($arr2['comments'], $object);
+
+      $object2 = (object) $arr2;
+
+      $arr[$ind] = $object2;
+      $arr3 = array_values($arr);
+      $result = json_encode($arr3);
       file_put_contents('posts/db/posts.txt', $result);
 
       return true;
