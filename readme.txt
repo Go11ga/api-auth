@@ -1,7 +1,7 @@
 1. Создание пользователя
 
 http://api-auth/api/auth/create OK
-http://blog.garrykhr.ru//api/auth/create
+http://blog.garrykhr.ru/api/auth/create OK
 метод POST
 Body -> raw 
 
@@ -17,7 +17,7 @@ Body -> raw
 2. Вход пользователя
 
 http://api-auth/api/auth/auth OK
-http://blog.garrykhr.ru/api/auth/auth
+http://blog.garrykhr.ru/api/auth/auth OK
 метод POST
 Body -> raw
 
@@ -37,7 +37,7 @@ Response: "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hb
 3. Валидация токена
 
 http://api-auth/api/auth/validate OK
-http://blog.garrykhr.ru/api/auth/validate
+http://blog.garrykhr.ru/api/auth/validate OK
 метод POST
 Body -> raw
 
@@ -66,6 +66,7 @@ Response:
 
 4. Обновление пользователя
 http://api-auth/api/auth/update OK
+http://blog.garrykhr.ru/api/auth/update OK
 метод POST
 Body -> raw
 
@@ -93,14 +94,17 @@ Response:
 
 5. Получить все посты
 http://api-auth/api/posts OK
+http://blog.garrykhr.ru/api/posts OK
 метод GET
 
 6. Получить один пост
 http://api-auth/api/posts/1 OK
+http://blog.garrykhr.ru/api/posts/1 OK
 метод GET
 
-7. Добавить один пост OK
-http://api-auth/api/posts/add
+7. Добавить один пост
+http://api-auth/api/posts/add OK
+http://blog.garrykhr.ru/api/posts/add OK
 метод POST
 
 Тест для 200:
@@ -111,6 +115,7 @@ http://api-auth/api/posts/add
 
 8. Редактирование поста по id
 http://api-auth/api/posts/update/1 OK
+http://blog.garrykhr.ru/api/posts/update/1 OK
 метод POST
 
 Тест для 200:
@@ -120,10 +125,12 @@ http://api-auth/api/posts/update/1 OK
 
 9. Удаление поста по id
 http://api-auth/api/posts/delete/1 OK
+http://blog.garrykhr.ru/api/posts/delete/1 OK
 метод POST
 
 10. Добавление комментария
-http://api-auth/api/comment/add/1 OK
+http://api-auth/api/comment/add/2 OK
+http://blog.garrykhr.ru/api/comment/add/2 OK
 метод POST
 
 Тест для 200:
@@ -133,14 +140,16 @@ http://api-auth/api/comment/add/1 OK
 }
 
 10. Удаление комментария
-http://api-auth/api/comment/delete/4/7 OK
+http://api-auth/api/comment/delete/2/1 OK
+http://blog.garrykhr.ru/api/comment/delete/2/1 OK
 метод POST
 
-4 - id поста
-7 - id комментария
+2 - id поста
+1 - id комментария
 
 11. Увеличить количество просмотров
-http://api-auth/api/views/1 OK
+http://api-auth/api/views/2 OK
+http://blog.garrykhr.ru/api/views/2 OK
 метод POST
 
-1 - id поста
+2 - id поста
