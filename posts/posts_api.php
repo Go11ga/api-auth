@@ -67,8 +67,6 @@
 
     $db_posts = new Posts();
 
-    $db_posts->setOne($title, $text);
-
     if($title && $text) {
       if($db_posts->setOne($title, $text)) {
         http_response_code(200);
