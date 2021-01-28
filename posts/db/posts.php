@@ -72,7 +72,7 @@
     /**
      * * Редактирование элемента по id
      */
-    public function update ($id, $title, $textInc) {
+    public function update ($id, $textInc) {
       $text = file_get_contents('posts/db/posts.txt');
       $arr = json_decode($text);
 
@@ -86,7 +86,7 @@
 
       $arr2 = (array) $arr[$ind];
 
-      $arr2['title'] = $title;
+      // $arr2['title'] = $title;
       $arr2['text'] = $textInc;
 
       $object = (object) $arr2;
@@ -175,6 +175,90 @@
       $arr[$ind] = $object2;
       $arr3 = array_values($arr);
       $result = json_encode($arr3);
+      file_put_contents('posts/db/posts.txt', $result);
+
+      return true;
+    }
+
+    /**
+     * * Удаление комментария
+     */
+    public function removeComment($post_id, $comment_id) {
+      $text = file_get_contents('posts/db/posts.txt');
+      $arr = json_decode($text);
+
+      $ind;
+      foreach($arr as $key => $el) {
+        $array = (array) $el;
+        if($array['id'] == $post_id) {
+          $ind = $key;
+        }
+      }
+
+      // искомый общий массив
+      $arr2 = (array) $arr[$ind];
+
+      // массив комментариев
+      $comments = $arr2['comments'];
+
+      // $result = json_encode($comments);
+      // echo $result;
+
+      $comments2 = [];
+      foreach($comments as $el) {
+        $array = (array) $el;
+        if($array['id'] != $comment_id) {
+          $comments2[] = (object) $array;
+        }
+      }
+
+      // $result = json_encode($comments2);
+      // echo $result;
+
+      $arr2['comments'] = $comments2;
+
+      // $result = json_encode($arr2);
+      // echo $result;
+     
+
+      $object2 = (object) $arr2;
+
+      $arr[$ind] = $arr2;
+
+      $arr3 = array_values($arr);
+
+      $result = json_encode($arr3);
+
+      file_put_contents('posts/db/posts.txt', $result);
+
+      return true;
+    }
+
+    /**
+     * * Увеличить количество просмотров
+     */
+    public function increase($id) {
+      $text = file_get_contents('posts/db/posts.txt');
+      $arr = json_decode($text);
+
+      $ind;
+      foreach($arr as $key => $el) {
+        $array = (array) $el;
+        if($array['id'] == $id) {
+          $ind = $key;
+        }
+      }
+
+      $arr2 = (array) $arr[$ind];
+
+      $arr2['views'] = $arr2['views'] + 1;
+
+      $object = (object) $arr2;
+
+      $arr[$ind] = $object;
+      $arr2 = array_values($arr);
+      $result = json_encode($arr2);
+
       file_put_contents('posts/db/posts.txt', $result);
 
       return true;

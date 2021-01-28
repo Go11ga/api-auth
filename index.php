@@ -86,6 +86,25 @@
       $id = $requestUri[3];
       addComment($id);
     }
+
+    /**
+     * * Удалить один комментарий
+     * * http://api-auth/api/comment/delete/1/1
+     */
+    if ($_SERVER['REQUEST_METHOD'] ==='POST' && $requestUri[1] === 'comment' && $requestUri[2] === 'delete' && isset($requestUri[3]) && isset($requestUri[4])) {
+      $post_id = $requestUri[3];
+      $comment_id = $requestUri[4];
+      deleteComment($post_id, $comment_id);
+    }
+    
+    /**
+     * * Увеличить количество просмотров
+     * * http://api-auth/api/views/1
+     */
+    if ($_SERVER['REQUEST_METHOD'] ==='POST' && $requestUri[1] === 'views' && isset($requestUri[2])) {
+      $id = $requestUri[2];
+      increaseViews($id);
+    }
   
   } catch (Exception $e) {
     echo json_encode(Array('error' => $e->getMessage()));

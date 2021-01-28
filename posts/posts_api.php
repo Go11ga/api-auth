@@ -86,7 +86,7 @@
   function updateOnePost ($id) {
     $data = json_decode(file_get_contents("php://input"));
 
-    $title = $data->title;
+    // $title = $data->title;
     $text = $data->text;
 
     $db_posts = new Posts();
@@ -94,7 +94,7 @@
     $post = $db_posts->getById($id);
 
     if ($post) {
-      if($db_posts->update($id, $title, $text)) {
+      if($db_posts->update($id, $text)) {
         http_response_code(200);
         echo json_encode(array("message" => "Пост был обновлен"));
       } else {
@@ -142,7 +142,7 @@
 
     $post = $db_posts->getById($id);
 
-    if ($post) {
+    if ($post && $title && $text) {
       if($db_posts->addComment($id, $title, $text)) {
         http_response_code(200);
         echo json_encode(array("message" => "Комментарий добавлен"));
@@ -153,6 +153,47 @@
     } else {
       http_response_code(400);
       echo json_encode(array("message" => "Невозможно добавить комментарий"));
+    }
+  }
+
+  /**
+   * * Удалить комментарий
+   */
+  function deleteComment ($post_id, $comment_id) {
+    $db_posts = new Posts();
+
+    $post = $db_posts->getById($post_id);
+
+    if ($post) {
+      if($db_posts->removeComment($post_id, $comment_id)) {
+        http_response_code(200);
+        echo json_encode(array("message" => "Комментарий удален"));
+      } else {
+        http_response_code(400);
+        echo json_encode(array("message" => "Невозможно удалить комментарий"));
+      }
+    } else {
+      http_response_code(400);
+      echo json_encode(array("message" => "Невозможно удалить комментарий"));
+    }
+  }
+
+  /**
+   * * Увеличить количество просмотров
+   */
+  function increaseViews ($id) {
+    $db_posts = new Posts();
+
+    $post = $db_posts->getById($id);
+
+    if($post) {
+      if($db_posts->increase($id)) {
+        http_response_code(200);
+      } else {
+        http_response_code(200);
+      }
+    } else {
+      http_response_code(200);
     }
   }
 ?>

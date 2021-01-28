@@ -112,7 +112,6 @@ http://api-auth/api/posts/update/1
 
 Тест для 200:
 {
-  "title" : "test",
   "text" : "test"
 }
 
@@ -129,3 +128,16 @@ http://api-auth/api/comment/add/1
   "title" : "test",
   "text" : "test"
 }
+
+10. Удаление комментария
+http://api-auth/api/comment/delete/4/7
+метод POST
+
+4 - id поста
+7 - id комментария
+
+11. Увеличить количество просмотров
+http://api-auth/api/views/1
+метод POST
+
+1 - id поста
