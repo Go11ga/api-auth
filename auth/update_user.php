@@ -28,7 +28,7 @@
    * * Получаем данные
    */
   $data = json_decode(file_get_contents("php://input"));
-  
+
   /**
    * * Получаем jwt 
    */
@@ -44,7 +44,7 @@
        */
       $decoded = JWT::decode($jwt, $key, array('HS256'));
 
-      $db_users->login = $decoded->data->login;
+      $db_users->login = $decoded->data->name;
       $db_users->password = $decoded->data->password;
 
       if ($db_users->userExists() && $db_users->password_verify ()) {

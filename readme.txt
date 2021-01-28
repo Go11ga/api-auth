@@ -1,6 +1,7 @@
 1. Создание пользователя
 
-http://api-auth/api/auth/create
+http://api-auth/api/auth/create OK
+http://blog.garrykhr.ru//api/auth/create
 метод POST
 Body -> raw 
 
@@ -15,7 +16,8 @@ Body -> raw
 
 2. Вход пользователя
 
-http://api-auth/api/auth/auth
+http://api-auth/api/auth/auth OK
+http://blog.garrykhr.ru/api/auth/auth
 метод POST
 Body -> raw
 
@@ -34,13 +36,14 @@ Response: "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hb
 
 3. Валидация токена
 
-http://api-auth/api/auth/validate
+http://api-auth/api/auth/validate OK
+http://blog.garrykhr.ru/api/auth/validate
 метод POST
 Body -> raw
 
 Тест для 200 (Token admin):
 {
-  "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hbnktc2l0ZS5vcmciLCJhdWQiOiJodHRwOlwvXC9hbnktc2l0ZS5jb20iLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJuYW1lIjoiYWRtaW4iLCJwYXNzd29yZCI6ImFkbWluIn19.noSABdIl-2YGDj-EkSucXT9ppOy3wbgMrDdBmeMmPlk"
+  "jwt": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hbnktc2l0ZS5vcmciLCJhdWQiOiJodHRwOlwvXC9hbnktc2l0ZS5jb20iLCJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwiZGF0YSI6eyJsb2dpbiI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbiJ9fQ.zdKhCvtutlHYZcy8ZJKGyCGSp75PBzqEr5iEDAWwJZQ"
 }
 Response:
 {
@@ -62,7 +65,7 @@ Response:
 }
 
 4. Обновление пользователя
-http://api-auth/api/auth/update
+http://api-auth/api/auth/update OK
 метод POST
 Body -> raw
 
@@ -89,14 +92,14 @@ Response:
 }
 
 5. Получить все посты
-http://api-auth/api/posts
+http://api-auth/api/posts OK
 метод GET
 
 6. Получить один пост
-http://api-auth/api/posts/1
+http://api-auth/api/posts/1 OK
 метод GET
 
-7. Добавить один пост
+7. Добавить один пост OK
 http://api-auth/api/posts/add
 метод POST
 
@@ -107,7 +110,7 @@ http://api-auth/api/posts/add
 }
 
 8. Редактирование поста по id
-http://api-auth/api/posts/update/1
+http://api-auth/api/posts/update/1 OK
 метод POST
 
 Тест для 200:
@@ -116,11 +119,11 @@ http://api-auth/api/posts/update/1
 }
 
 9. Удаление поста по id
-http://api-auth/api/posts/delete/1
+http://api-auth/api/posts/delete/1 OK
 метод POST
 
 10. Добавление комментария
-http://api-auth/api/comment/add/1
+http://api-auth/api/comment/add/1 OK
 метод POST
 
 Тест для 200:
@@ -130,14 +133,14 @@ http://api-auth/api/comment/add/1
 }
 
 10. Удаление комментария
-http://api-auth/api/comment/delete/4/7
+http://api-auth/api/comment/delete/4/7 OK
 метод POST
 
 4 - id поста
 7 - id комментария
 
 11. Увеличить количество просмотров
-http://api-auth/api/views/1
+http://api-auth/api/views/1 OK
 метод POST
 
 1 - id поста

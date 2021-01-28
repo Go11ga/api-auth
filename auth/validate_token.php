@@ -32,12 +32,11 @@
    * * Если JWT не пуст 
    */
   if($jwt) {
-  
     /**
      * * Если декодирование выполнено успешно, показать данные пользователя 
      */
     try {
-        $decoded = JWT::decode($jwt, $key, array('HS256'));
+        $decoded = JWT::decode($jwt->jwt, $key, array('HS256'));
 
         http_response_code(200);
 
