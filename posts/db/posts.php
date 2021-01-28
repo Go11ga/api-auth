@@ -86,7 +86,6 @@
 
       $arr2 = (array) $arr[$ind];
 
-      // $arr2['title'] = $title;
       $arr2['text'] = $textInc;
 
       $object = (object) $arr2;
@@ -201,9 +200,6 @@
       // массив комментариев
       $comments = $arr2['comments'];
 
-      // $result = json_encode($comments);
-      // echo $result;
-
       $comments2 = [];
       foreach($comments as $el) {
         $array = (array) $el;
@@ -212,14 +208,7 @@
         }
       }
 
-      // $result = json_encode($comments2);
-      // echo $result;
-
       $arr2['comments'] = $comments2;
-
-      // $result = json_encode($arr2);
-      // echo $result;
-     
 
       $object2 = (object) $arr2;
 
