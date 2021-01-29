@@ -2,11 +2,9 @@
   /**
    * * Заголовки
    */
-  header("Access-Control-Allow-Origin: *");
-  header("Content-Type: application/json; charset=UTF-8");
-  header("Access-Control-Allow-Methods: POST");
-  header("Access-Control-Max-Age: 3600");
-  header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+  header("Access-Control-Allow-Orgin: *");
+  header("Access-Control-Allow-Methods: *");
+  header("Content-Type: application/json");
 
   /**
    * * "Подключение к БД"
@@ -14,12 +12,16 @@
   include_once 'db/users.php';
   $db_users = new Users();
   
-  /**
-   * * Получаем данные
-   */
-  $data = json_decode(file_get_contents("php://input"));
-  $db_users->login = $data->login;
-  $db_users->password = $data->password;
+  // Вариант с ЧПУ
+  // $data = json_decode(file_get_contents("php://input"));
+  // $db_users->login = $data->login;
+  // $db_users->password = $data->password;
+
+  $login = $_REQUEST['login'];
+  $password = $_REQUEST['password'];
+
+  $db_users->login = $login;
+  $db_users->password = $password;
 
   $user_exists = $db_users->userExists();
   $password_verified = $db_users->password_verify();

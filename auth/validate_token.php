@@ -2,11 +2,9 @@
   /**
    * * Заголовки
    */
-  header("Access-Control-Allow-Origin: *");
-  header("Content-Type: application/json; charset=UTF-8");
-  header("Access-Control-Allow-Methods: POST");
-  header("Access-Control-Max-Age: 3600");
-  header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+  header("Access-Control-Allow-Orgin: *");
+  header("Access-Control-Allow-Methods: *");
+  header("Content-Type: application/json");
 
   /**
    * * Декодирование JWT 
@@ -18,15 +16,11 @@
   include_once 'libs/php-jwt-master/src/JWT.php';
   use \Firebase\JWT\JWT;
 
-  /**
-   * * Получаем значение веб-токена JSON
-   */ 
-  $data = json_decode(file_get_contents("php://input"));
+  // Вариант с ЧПУ
+  // $data = json_decode(file_get_contents("php://input"));
+  // $jwt=isset($data) ? $data : "";
 
-  /**
-   * * Получаем JWT 
-   */
-  $jwt=isset($data) ? $data : "";
+  $jwt = $_REQUEST['jwt'];
 
   /**
    * * Если JWT не пуст 
@@ -36,7 +30,7 @@
      * * Если декодирование выполнено успешно, показать данные пользователя 
      */
     try {
-        $decoded = JWT::decode($jwt->jwt, $key, array('HS256'));
+        $decoded = JWT::decode($jwt, $key, array('HS256'));
 
         http_response_code(200);
 

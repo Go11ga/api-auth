@@ -2,11 +2,9 @@
   /**
    * * Заголовки
    */
-  header("Access-Control-Allow-Origin: *");
-  header("Content-Type: application/json; charset=UTF-8");
-  header("Access-Control-Allow-Methods: POST");
-  header("Access-Control-Max-Age: 3600");
-  header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+  header("Access-Control-Allow-Orgin: *");
+  header("Access-Control-Allow-Methods: *");
+  header("Content-Type: application/json");
   
   /**
    * * Для кодирования токена
@@ -24,15 +22,13 @@
   include_once 'db/users.php';
   $db_users = new Users();
   
-  /**
-   * * Получаем данные
-   */
-  $data = json_decode(file_get_contents("php://input"));
+  // Вариант с ЧПУ
+  // $data = json_decode(file_get_contents("php://input"));
+  // $jwt=isset($data->jwt) ? $data->jwt : "";
 
-  /**
-   * * Получаем jwt 
-   */
-  $jwt=isset($data->jwt) ? $data->jwt : "";
+  $jwt = $_REQUEST['jwt'];
+  $login = $_REQUEST['login'];
+  $password = $_REQUEST['password'];
  
   /**
    * * Если JWT не пуст
@@ -44,12 +40,12 @@
        */
       $decoded = JWT::decode($jwt, $key, array('HS256'));
 
-      $db_users->login = $decoded->data->name;
+      $db_users->login = $decoded->data->login;
       $db_users->password = $decoded->data->password;
 
       if ($db_users->userExists() && $db_users->password_verify ()) {
-        $upd_login = $data->login;
-        $upd_password = $data->password;
+        $upd_login = $login;
+        $upd_password = $password;
 
         /**
          * * Если обновление прошло успешно, генерируем новый токен

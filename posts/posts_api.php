@@ -2,11 +2,9 @@
   /**
    * * Заголовки
    */
-  header("Access-Control-Allow-Origin: *");
-  header("Content-Type: application/json; charset=UTF-8");
-  header("Access-Control-Allow-Methods: POST");
-  header("Access-Control-Max-Age: 3600");
-  header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+  header("Access-Control-Allow-Orgin: *");
+  header("Access-Control-Allow-Methods: *");
+  header("Content-Type: application/json");
 
   /**
    * * "Подключение к БД"
@@ -59,13 +57,13 @@
   /**
    * * Добавить один пост
    */
-  function addOnePost () {
-    $data = json_decode(file_get_contents("php://input"));
-
-    $title = $data->title;
-    $text = $data->text;
-
+  function addOnePost ($title, $text) {
     $db_posts = new Posts();
+
+    // Вариант для ЧПУ
+    // $data = json_decode(file_get_contents("php://input"));
+    // $title = $data->title;
+    // $text = $data->text;
 
     if($title && $text) {
       if($db_posts->setOne($title, $text)) {
@@ -81,12 +79,12 @@
   /**
    * * Редактировать пост
    */
-  function updateOnePost ($id) {
-    $data = json_decode(file_get_contents("php://input"));
-
-    $text = $data->text;
-
+  function updateOnePost ($id, $text) {
     $db_posts = new Posts();
+
+    // Вариант для ЧПУ
+    // $data = json_decode(file_get_contents("php://input"));
+    // $text = $data->text;
 
     $post = $db_posts->getById($id);
 
@@ -129,13 +127,14 @@
   /**
    * Добавить комментарий
    */
-  function addComment ($id) {
+  function addComment ($id, $title, $text) {
     $db_posts = new Posts();
 
-    $data = json_decode(file_get_contents("php://input"));
+    // Вариант для ЧПУ
+    // $data = json_decode(file_get_contents("php://input"));
 
-    $title = $data->title;
-    $text = $data->text;
+    // $title = $data->title;
+    // $text = $data->text;
 
     $post = $db_posts->getById($id);
 
@@ -186,11 +185,14 @@
     if($post) {
       if($db_posts->increase($id)) {
         http_response_code(200);
+        echo json_encode(array("message" => "Счетчик увеличен"));
       } else {
         http_response_code(200);
+        echo json_encode(array("message" => "Не возможно увеличить счетчик"));
       }
     } else {
       http_response_code(200);
+      echo json_encode(array("message" => "Не возможно увеличить счетчик"));
     }
   }
 ?>
